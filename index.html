@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatchCraft - Chess Tournament Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom dark theme with black and pink colors */
+    .dark-theme {
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .dark-theme a {
+      color: #000000; /* Pink color */
+    }
+    .dark-theme .bg-dark {
+      background-color: #1e1e1e; /* Dark background for sections */
+    }
+    /* Animation styles */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold italic">Match<i><span class="text-pink-500">Craft</span></i></h1>
+    <header class="text-center py-8">
+        
+      <p class="text-white text-2xl italic font-bold uppercase animate-pulse mt-10">Game on, <span class="text-pink-500">tournament ready.</span> </p>
+    </header>
+
+    <main>
+      <section id="home" class="py-8">
+        <h2 class="text-2xl font-semibold text-center mb-4">Welcome to MatchCraft</h2>
+        <p class="text-gray-300 text-center">Your one-stop solution for organizing and sharing chess tournaments online. Connect with chess enthusiasts and challenge your skills in a vibrant community.</p>
+      </section>
+
+      <section id="tournaments" class="py-8">
+        <h2 class="text-2xl font-semibold text-center mb-4">Current Tournaments</h2>
+
+        <!-- Example tournament with countdown timer -->
+        <div class="bg-dark p-4 rounded-lg shadow-md mb-4 fade-in" id="tournament-1">
+          <h3 class="text-xl font-bold">Tournament Name: <span class="text-pink-500">Chess Championship 2024</span></h3>
+          <p class="text-gray-300">Time Control: <span class="text-pink-500">10 minutes per player</span></p>
+          <p class="text-gray-300">Format: <span class="text-pink-500">Swiss</span></p>
+          <p class="text-gray-300">Location: <span class="text-pink-500">Online on Chess.com</span></p>
+          <p class="text-gray-300">Entry Fee: <span class="text-pink-500"> &#8377; 0</span></p>
+          <p class="text-gray-300">Prize Money: <span class="text-pink-500"> &#8377; 200<span class="text-sm text-gray-600">*</span></span></p>
+
+          <div class="mt-2 text-center text-white bg-pink-500 px-4 py-2 rounded" id="countdown-1"></div>
+
+          <a href="https://www.chess.com/play/tournament/5305005" target="_blank"
+            class="block mt-2 text-center bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Join
+            Tournament</a>
+        </div>
+
+        <!-- Another tournament with countdown timer -->
+        <div class="bg-dark p-4 rounded-lg shadow-md mb-4 fade-in" id="tournament-2">
+          <h3 class="text-xl font-bold">Tournament Name: <span class="text-pink-500">Grandmaster's Battle</span></h3>
+          <p class="text-gray-300">Time Control: <span class="text-pink-500">15 minutes per player</span></p>
+          <p class="text-gray-300">Format: <span class="text-pink-500">Round Robin</span></p>
+          <p class="text-gray-300">Location: <span class="text-pink-500">Onsite at Tournament Venue</span></p>
+          <p class="text-gray-300">Entry Fee: <span class="text-pink-500"> &#8377; 500</span></p>
+          <p class="text-gray-300">Prize Money: <span class="text-pink-500"> &#8377; 10000<span class="text-sm text-gray-600">*</span></span></p>
+
+          <div class="mt-2 text-center text-white bg-pink-500 px-4 py-2 rounded" id="countdown-2"></div>
+
+          <a href="https://www.chess.com/tournament/grandmasters-battle" target="_blank"
+            class="block mt-2 text-center bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Join
+            Tournament</a>
+        </div>
+
+        <!-- Additional tournaments can be added here -->
+      </section>
+
+      <section id="about" class="bg-dark py-8">
+        <h2 class="text-2xl font-semibold text-center mb-4">About MatchCraft</h2>
+        <p class="text-gray-300 text-center">MatchCraft is dedicated to providing a seamless platform for organizing and participating in chess tournaments. With features like automated pairing, live updates, and direct links to Chess.com, we make competitive play accessible to all.</p>
+      </section>
+
+      <section id="contact" class="bg-dark py-8">
+        <h2 class="text-2xl font-semibold text-center mb-4">Contact Us</h2>
+        <p class="text-gray-300 text-center">Have questions or need help organizing a tournament? Reach out to us at
+          <a href="mailto:support@matchcraft.com" class="text-pink-500">support@matchcraft.com</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="text-center py-4">
+      <p class="text-gray-300">&copy; 2024 MatchCraft. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Countdown timer function
+    function countdownTimer(endDate, elementId) {
+      const countdownElement = document.getElementById(elementId);
+      const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+        
+        if (distance < 0) {
+          clearInterval(interval);
+          countdownElement.innerHTML = "Tournament Ended";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+    }
+
+    // Set countdown timers for each tournament dynamically
+    const tournaments = [
+      { id: "countdown-1", endDate: new Date("2024-12-20T00:00:00") },
+      { id: "countdown-2", endDate: new Date("2024-12-22T00:00:00") }
+      // Add more tournaments as objects with 'id' and 'endDate' properties
+    ];
+
+    tournaments.forEach(tournament => {
+      countdownTimer(tournament.endDate, tournament.id);
+    });
+  </script>
+</body>
+</html>
